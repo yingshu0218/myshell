@@ -2,6 +2,8 @@
 
 `shared/` 只保存三个客户端必须共同遵守的平台无关契约，不保存可执行客户端代码。
 
+详细互操作矩阵见 [COMPATIBILITY.md](COMPATIBILITY.md)。
+
 计划内容：
 
 ```text

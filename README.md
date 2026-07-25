@@ -40,22 +40,26 @@ myshell/
 │   └── SYNC_HUB_DECISIONS.md         # 编码前创建的决策记录
 ├── shared/
 │   ├── README.md                     # 跨端共享边界
+│   ├── COMPATIBILITY.md              # 跨端兼容与验收矩阵
 │   ├── schemas/                      # 版本化 JSON schema（未来）
 │   ├── crypto/                       # 加密信封规范（未来）
 │   └── test-vectors/                 # 跨语言测试向量（未来）
 ├── web/
 │   ├── README.md
+│   ├── DEVELOPMENT.md                # Web 技术栈、节点和指标
 │   ├── docs/
 │   ├── cmd/                          # Go 服务入口（未来）
 │   ├── internal/                     # Web 后端模块（未来）
 │   └── frontend/                     # 原生 HTML/CSS/JS（未来）
 ├── macos/
 │   ├── README.md
+│   ├── DEVELOPMENT.md                # macOS 技术栈、节点和指标
 │   ├── MyShell.xcodeproj/            # 未来
 │   ├── Sources/                      # 未来
 │   └── Tests/                        # 未来
 └── windows/
     ├── README.md
+    ├── DEVELOPMENT.md                # Windows 技术栈、节点和指标
     ├── MyShell.sln                   # 未来
     ├── src/                          # 未来
     └── tests/                        # 未来
@@ -159,11 +163,12 @@ myshell/
 3. `docs/PROJECT_OVERVIEW.md`
 4. `docs/SYNC_HUB_DEVELOPMENT_HANDOFF.md`
 5. `shared/README.md`
-6. 当前任务对应端的 README：
+6. `shared/COMPATIBILITY.md`
+7. 当前任务对应端的 README 和 `DEVELOPMENT.md`：
    - Web：`web/README.md`
    - macOS：`macos/README.md`
    - Windows：`windows/README.md`
-7. 当前端已有的 `docs/`、入口、存储、网络、安全和测试代码
+8. 当前端已有的 `docs/`、入口、存储、网络、安全和测试代码
 
 然后 Agent 必须先输出：
 
@@ -192,7 +197,8 @@ myshell/
 ```text
 请从仓库根目录开始，完整阅读 AGENTS.md、README.md、
 docs/PROJECT_OVERVIEW.md、docs/SYNC_HUB_DEVELOPMENT_HANDOFF.md、
-shared/README.md，以及当前任务所属端的 README 和 docs。
+shared/README.md、shared/COMPATIBILITY.md，以及当前任务所属端的
+README.md、DEVELOPMENT.md 和 docs。
 
 先不要修改代码。请先说明当前仓库状态、任务范围、文档或契约冲突、
 需要确认的依赖与安全决策，并给出分阶段可验证计划。
@@ -214,6 +220,10 @@ shared/README.md，以及当前任务所属端的 README 和 docs。
 - [项目整体说明](docs/PROJECT_OVERVIEW.md)
 - [Sync Hub 开发交接](docs/SYNC_HUB_DEVELOPMENT_HANDOFF.md)
 - [Web 独立说明](web/README.md)
+- [Web 开发规范](web/DEVELOPMENT.md)
+- [macOS 开发规范](macos/DEVELOPMENT.md)
+- [Windows 开发规范](windows/DEVELOPMENT.md)
+- [跨端兼容规范](shared/COMPATIBILITY.md)
 - [Web 页面设计](web/docs/UI_DESIGN.md)
 - [Web 主题规范](web/docs/THEMES.md)
 - [Web 代码高亮](web/docs/CODE_HIGHLIGHTING.md)

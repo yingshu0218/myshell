@@ -22,8 +22,9 @@ Before changing files, read in full:
 3. `docs/PROJECT_OVERVIEW.md`.
 4. `docs/SYNC_HUB_DEVELOPMENT_HANDOFF.md`.
 5. `shared/README.md`.
-6. The README and documentation inside the target client directory.
-7. Relevant source, persistence, security, network, and test code.
+6. `shared/COMPATIBILITY.md`.
+7. The README and `DEVELOPMENT.md` inside the target client directory.
+8. Relevant source, persistence, security, network, and test code.
 
 Then report the observed state, intended file scope, contract conflicts,
 dependency or migration needs, and a testable rollback-safe plan. Do not begin
@@ -36,6 +37,10 @@ Finish shared schema, encryption, and test-vector decisions before client
 integration. Current implementation order is Web, macOS, then Windows. A task
 normally changes only one client directory. Cross-client behavior changes must
 also update `shared/` specifications and compatibility tests.
+
+Client work follows the numbered gates in its `DEVELOPMENT.md`. Advance one
+gate at a time and report its files, tests, security impact, resource evidence,
+and rollback path before starting the next gate.
 
 Never add MyShell-specific fields to Sync Hub. Do not access Sync Hub storage
 directly. Validate behavior against Sync Hub baseline commit

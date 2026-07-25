@@ -3,6 +3,9 @@
 `windows/` 用于真正的 Windows 原生客户端，不得使用 Electron、Tauri 或浏览器
 套壳复用 Web 界面。
 
+开始工作前完整阅读 [Windows 开发规范](DEVELOPMENT.md) 和
+[跨端兼容规范](../shared/COMPATIBILITY.md)。
+
 ## 计划能力
 
 - 初步建议 C# 与 WinUI 3，建立工程前由所有者最终确认

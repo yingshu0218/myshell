@@ -2,6 +2,9 @@
 
 `macos/` 用于 Swift 编写的原生 macOS 客户端，不得包含 Web 套壳。
 
+开始工作前完整阅读 [macOS 开发规范](DEVELOPMENT.md) 和
+[跨端兼容规范](../shared/COMPATIBILITY.md)。
+
 ## 计划能力
 
 - SwiftUI 应用结构，AppKit 处理终端视图、键盘、窗口和 PTY

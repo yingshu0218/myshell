@@ -13,6 +13,8 @@
 
 - [项目整体说明](../docs/PROJECT_OVERVIEW.md)
 - [Sync Hub 交接手册](../docs/SYNC_HUB_DEVELOPMENT_HANDOFF.md)
+- [Web 开发规范](DEVELOPMENT.md)
+- [跨端兼容规范](../shared/COMPATIBILITY.md)
 - [Web 界面设计](docs/UI_DESIGN.md)
 - [主题规范](docs/THEMES.md)
 - [代码高亮规范](docs/CODE_HIGHLIGHTING.md)
