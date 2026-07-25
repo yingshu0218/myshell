@@ -1,0 +1,45 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.mobileprovision
+
+# Runtime data and logs
+data/
+*.log
+*.trace
+*.profdata
+*.xcresult
+
+# Go / Web
+web/bin/
+web/coverage.out
+web/data/
+web/frontend/dist/
+web/frontend/node_modules/
+
+# Xcode / Swift
+DerivedData/
+.build/
+.swiftpm/
+xcuserdata/
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+
+# Visual Studio / .NET
+.vs/
+**/bin/
+**/obj/
+*.user
+*.suo
+TestResults/
+
+# Operating systems and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
