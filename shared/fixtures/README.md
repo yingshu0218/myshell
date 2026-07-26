@@ -8,6 +8,7 @@
 
 - `vault-sync-v1.json`：完整的 MyShell Web 保险库输入。
 - `vault-sync-v1.expected.json`：读取、过滤和同步后的预期结果。
+- `VALIDATION.md`：各平台使用真实中转服务及备份服务的验收记录。
 
 测试端必须原样读取 JSON，不能在代码中复制一份数据。每个平台至少验证：
 
