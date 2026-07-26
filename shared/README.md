@@ -12,8 +12,13 @@ shared/
 ├── schemas/          # 连接、分组、终端配置的版本化 JSON schema
 ├── crypto/           # 加密信封、AAD、nonce 和恢复密钥格式
 ├── test-vectors/     # 三种语言必须得到相同结果的固定向量
-└── fixtures/         # Sync Hub 协议和冲突行为样例
+└── fixtures/         # 可直接运行的跨平台同步与恢复测试数据
 ```
+
+当前可执行夹具从 [`fixtures/vault-sync-v1.json`](fixtures/vault-sync-v1.json)
+开始；字段含义、预期结果和各平台必须执行的断言见
+[`fixtures/README.md`](fixtures/README.md)。后续客户端不得复制或改写夹具，
+必须从本目录读取同一份文件。
 
 ## 允许进入 shared 的内容
 
