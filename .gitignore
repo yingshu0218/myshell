@@ -13,13 +13,21 @@ data/
 *.trace
 *.profdata
 *.xcresult
+*.tar.gz
 
 # Go / Web
+/myshell-server
 web/bin/
 web/coverage.out
 web/data/
+web/dist/
+web/node_modules/
 web/frontend/dist/
 web/frontend/node_modules/
+
+# Docker Secrets
+secrets/vault_key
+secrets/git_token
 
 # Xcode / Swift
 DerivedData/

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://myshell.local/schemas/group-v1.schema.json",
+  "title": "MyShell connection group v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "name", "sortOrder", "updatedAt"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "string", "format": "uuid" },
+    "name": { "type": "string", "minLength": 1, "maxLength": 60 },
+    "sortOrder": { "type": "integer", "minimum": 0, "maximum": 1000000 },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  }
+}

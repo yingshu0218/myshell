@@ -1,0 +1,37 @@
+services:
+  myshell:
+    build:
+      context: .
+    image: myshell:dev
+    restart: unless-stopped
+    init: true
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      MYSHELL_ADDRESS: ":8080"
+      MYSHELL_DATA_DIR: "/data"
+      MYSHELL_SHELL: "/bin/sh"
+      MYSHELL_SECURE_COOKIES: "true"
+      MYSHELL_PUBLIC_URL: "${MYSHELL_PUBLIC_URL:-}"
+      MYSHELL_VAULT_KEY_FILE: "/run/secrets/vault_key"
+    volumes:
+      - myshell-data:/data
+    secrets:
+      - vault_key
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 128
+    mem_limit: 256m
+    cpus: 1.0
+
+volumes:
+  myshell-data:
+
+secrets:
+  vault_key:
+    file: ./secrets/vault_key

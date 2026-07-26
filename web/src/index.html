@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark light">
+    <title>MyShell</title>
+    <link rel="stylesheet" href="/vendor/xterm.css">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body data-theme="midnight">
+    <div id="auth-view" class="auth-view">
+      <main class="auth-panel" aria-labelledby="auth-title">
+        <div class="brand brand-large"><span class="brand-mark">&gt;_</span> MyShell</div>
+        <h1 id="auth-title">登录你的终端</h1>
+        <p id="auth-copy">使用 VPS 上唯一的 MyShell 账号继续。</p>
+        <form id="auth-form">
+          <label>用户名<input id="username" name="username" autocomplete="username" required minlength="3"></label>
+          <label>密码<input id="password" name="password" type="password" autocomplete="current-password" required minlength="6"></label>
+          <p id="auth-error" class="form-error" role="alert"></p>
+          <button class="primary-button" type="submit">登录</button>
+        </form>
+        <p class="security-note">MyShell 不开放注册。忘记密码时，请在 VPS 上运行重置命令。</p>
+      </main>
+    </div>
+
+    <div id="app-view" class="app-view" hidden>
+      <aside class="sidebar">
+        <header class="sidebar-header">
+          <div class="brand"><span class="brand-mark">&gt;_</span> MyShell</div>
+          <button id="mobile-close" class="icon-button mobile-only" aria-label="关闭连接列表">×</button>
+        </header>
+        <div class="sidebar-title-row">
+          <h2>连接</h2>
+          <button id="add-connection" class="icon-button" title="新增 SSH 连接" aria-label="新增 SSH 连接">＋</button>
+        </div>
+        <label class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <input id="connection-search" type="search" placeholder="搜索连接">
+        </label>
+        <nav id="connection-list" class="connection-list" aria-label="服务器连接"></nav>
+        <button id="local-shell" class="sidebar-action"><span class="status-dot online"></span><span>本地 Shell</span></button>
+        <div class="sidebar-spacer"></div>
+        <button id="open-settings" class="settings-button"><span aria-hidden="true">⚙</span> 设置</button>
+      </aside>
+
+      <main class="workspace">
+        <header class="tab-bar">
+          <button id="mobile-menu" class="icon-button mobile-only" aria-label="打开连接列表">☰</button>
+          <div id="terminal-tabs" class="terminal-tabs" role="tablist"></div>
+          <button id="new-shell" class="new-tab" title="新建本地终端" aria-label="新建本地终端">＋</button>
+          <button id="theme-button" class="icon-button theme-button" aria-haspopup="menu" aria-expanded="false" title="主题">◉</button>
+          <div id="theme-menu" class="theme-menu" role="menu" hidden>
+            <h3>外观</h3>
+            <button data-theme-choice="midnight"><span></span>Midnight Graphite</button>
+            <button data-theme-choice="paper"><span></span>Paper White</button>
+            <button data-theme-choice="solarized"><span></span>Solarized Dark</button>
+            <button data-theme-choice="nord"><span></span>Nord</button>
+            <button data-theme-choice="contrast"><span></span>High Contrast</button>
+          </div>
+        </header>
+
+        <section class="content-grid">
+          <div id="terminal-stack" class="terminal-stack">
+            <div id="empty-terminal" class="empty-state">
+              <div class="empty-glyph">&gt;_</div>
+              <h1>准备好连接</h1>
+              <p>打开本地 Shell，或从左侧选择一台 SSH 服务器。</p>
+              <button id="empty-shell" class="primary-button">打开本地 Shell</button>
+            </div>
+          </div>
+          <aside id="code-preview" class="code-preview">
+            <header>
+              <div><span class="file-icon">◇</span><span id="preview-name">docker-compose.yml</span></div>
+              <button id="toggle-preview" class="icon-button" title="关闭预览" aria-label="关闭代码预览">×</button>
+            </header>
+            <pre class="line-numbers"><code id="preview-code" class="language-yaml">services:
+  myshell:
+    image: myshell:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - myshell-data:/data
+    secrets:
+      - vault_key
+
+volumes:
+  myshell-data:
+
+secrets:
+  vault_key:
+    file: ./secrets/vault_key</code></pre>
+          </aside>
+        </section>
+
+        <footer class="status-bar">
+          <button id="check-status" title="立即检查所有服务器"><span class="status-dot online"></span>中转服务正常</button>
+          <span id="latency-status">本机</span>
+          <span id="session-count">0 个活动终端</span>
+          <span id="sync-status">已同步</span>
+        </footer>
+      </main>
+    </div>
+
+    <dialog id="connection-dialog">
+      <form id="connection-form">
+        <header><h2 id="connection-dialog-title">新增 SSH 连接</h2><button class="icon-button" type="button" data-close-connection aria-label="关闭">×</button></header>
+        <input id="connection-id" type="hidden">
+        <div class="form-grid">
+          <label class="wide">名称<input id="connection-name" required maxlength="80" placeholder="例如：生产服务器"></label>
+          <label>分组<input id="connection-group" maxlength="60" placeholder="Production"></label>
+          <label>主机<input id="connection-host" required maxlength="255" placeholder="192.0.2.10"></label>
+          <label>端口<input id="connection-port" type="number" min="1" max="65535" value="22" required></label>
+          <label>用户名<input id="connection-username" autocomplete="username" maxlength="128"></label>
+          <label>密码<input id="connection-password" type="password" autocomplete="new-password" maxlength="256" placeholder="编辑时留空保持原密码"></label>
+          <label>自动检查
+            <select id="connection-period">
+              <option value="0">关闭</option><option value="5">每 5 分钟</option>
+              <option value="15">每 15 分钟</option><option value="30">每 30 分钟</option>
+              <option value="60">每 60 分钟</option>
+            </select>
+          </label>
+        </div>
+        <p class="form-hint">密码会使用保险库密钥加密后保存，不会写入日志或 SSH 命令参数。</p>
+        <p id="connection-error" class="form-error" role="alert"></p>
+        <footer><button id="delete-connection" class="danger-button" type="button" hidden>删除</button><span></span><button type="button" data-close-connection>取消</button><button id="save-connection" class="primary-button" type="submit">保存</button></footer>
+      </form>
+    </dialog>
+
+    <dialog id="settings-dialog" class="settings-dialog">
+      <form method="dialog">
+        <header><h2>设置</h2><button class="icon-button" value="cancel" aria-label="关闭">×</button></header>
+        <section>
+          <h3>外观与代码高亮</h3>
+          <label>主题
+            <select id="settings-theme">
+              <option value="midnight">Midnight Graphite</option>
+              <option value="paper">Paper White</option>
+              <option value="solarized">Solarized Dark</option>
+              <option value="nord">Nord</option>
+              <option value="contrast">High Contrast</option>
+            </select>
+          </label>
+          <label class="switch-row"><span>显示代码预览</span><input id="settings-preview" type="checkbox"></label>
+        </section>
+        <section>
+          <h3>GitHub / Gitea 加密备份</h3>
+          <label class="switch-row"><span>启用备份</span><input id="backup-enabled" type="checkbox"></label>
+          <div class="form-grid">
+            <label>服务
+              <select id="backup-provider"><option value="github">GitHub</option><option value="gitea">Gitea</option></select>
+            </label>
+            <label>API 地址<input id="backup-api" placeholder="Gitea 必填"></label>
+            <label>所有者<input id="backup-owner"></label>
+            <label>仓库<input id="backup-repo"></label>
+            <label>分支<input id="backup-branch" value="main"></label>
+            <label>计划
+              <select id="backup-schedule"><option value="">仅手动</option><option value="daily">每天</option><option value="weekly">每周</option></select>
+            </label>
+          </div>
+          <p class="form-hint">访问令牌必须通过 Docker Secret <code>git_token</code> 提供。</p>
+          <div class="button-row"><button id="save-settings" class="primary-button" type="button">保存设置</button><button id="run-backup" type="button">立即备份</button></div>
+          <p id="settings-message" class="form-hint" role="status"></p>
+          <div class="backup-heading"><h4>可恢复备份</h4><button id="refresh-backups" type="button">刷新列表</button></div>
+          <div id="backup-list" class="backup-list"><p class="form-hint">启用并保存配置后可以查看备份。</p></div>
+        </section>
+        <section>
+          <h3>账号</h3>
+          <p>当前用户：<strong id="account-name"></strong></p>
+          <button id="logout-button" type="button">退出登录</button>
+        </section>
+      </form>
+    </dialog>
+
+    <div id="toast-region" class="toast-region" aria-live="polite"></div>
+
+    <script src="/vendor/xterm.js"></script>
+    <script src="/vendor/xterm-addon-fit.js"></script>
+    <script src="/vendor/prism.js"></script>
+    <script src="/vendor/prism-bash.js"></script>
+    <script src="/vendor/prism-json.js"></script>
+    <script src="/vendor/prism-yaml.js"></script>
+    <script src="/vendor/prism-toml.js"></script>
+    <script src="/vendor/prism-go.js"></script>
+    <script src="/vendor/prism-swift.js"></script>
+    <script src="/vendor/prism-csharp.js"></script>
+    <script src="/vendor/prism-javascript.js"></script>
+    <script src="/vendor/prism-typescript.js"></script>
+    <script src="/vendor/prism-markup.js"></script>
+    <script src="/vendor/prism-css.js"></script>
+    <script src="/vendor/prism-docker.js"></script>
+    <script src="/vendor/prism-sql.js"></script>
+    <script src="/vendor/prism-markdown.js"></script>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
