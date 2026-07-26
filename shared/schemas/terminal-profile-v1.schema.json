@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://myshell.local/schemas/terminal-profile-v1.schema.json",
+  "title": "MyShell terminal profile v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "name", "theme", "codePreview", "updatedAt"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "string", "format": "uuid" },
+    "name": { "type": "string", "minLength": 1, "maxLength": 80 },
+    "theme": { "enum": ["midnight", "paper", "solarized", "nord", "contrast"] },
+    "codePreview": { "type": "boolean" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  }
+}

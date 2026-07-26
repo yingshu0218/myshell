@@ -4,7 +4,7 @@
 
 详细互操作矩阵见 [COMPATIBILITY.md](COMPATIBILITY.md)。
 
-计划内容：
+当前内容：
 
 ```text
 shared/
@@ -47,4 +47,10 @@ shared/
 4. 更新所有受影响端的固定测试向量。
 5. 获得仓库所有者确认后再实现。
 
-当前目录尚未建立正式 schema。客户端不得各自发明不兼容格式。
+首版正式公共契约已经建立：
+
+- `schemas/*-v1.schema.json`：连接、分组与终端配置记录。
+- `crypto/envelope-v1.md`：独立记录的 AES-256-GCM 信封。
+- `test-vectors/`：正向、错误 AAD 与损坏密文固定向量。
+
+各端必须直接读取这些文件进行互操作测试，不得复制一份后自行修改。

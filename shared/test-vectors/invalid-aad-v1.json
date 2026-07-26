@@ -1,0 +1,11 @@
+{
+  "vectorVersion": 1,
+  "source": "envelope-v1.json",
+  "changedContext": {
+    "appId": "myshell-fixture",
+    "collection": "connections",
+    "recordId": "22222222-2222-4222-8222-222222222222",
+    "schemaVersion": 1
+  },
+  "expectedError": "authentication_failed"
+}

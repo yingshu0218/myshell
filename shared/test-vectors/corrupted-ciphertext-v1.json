@@ -1,0 +1,9 @@
+{
+  "vectorVersion": 1,
+  "source": "envelope-v1.json",
+  "mutation": {
+    "payloadByteIndex": 40,
+    "xor": 1
+  },
+  "expectedError": "invalid_envelope"
+}
