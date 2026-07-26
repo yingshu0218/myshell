@@ -16,10 +16,10 @@ GitHub/Gitea 只作为 Sync Hub 的可选加密备份目标，不参与日常实
 | 模块 | 状态 | 当前重点 |
 | --- | --- | --- |
 | Sync Hub | `v0.1.0` 接入基线已完成 | 固定 API 与安全契约 |
-| MyShell Web | 视觉与功能规范已完成，代码尚未开始 | 当前优先开发 |
+| MyShell Web | 首版 Go/Web/Docker 实现及验收已完成 | 合并、部署和长期稳定性验收 |
 | macOS | 需求已确定，代码尚未开始 | Web 验收后开发 |
 | Windows | 需求已确定，技术基线待最终确认 | macOS 稳定后开发 |
-| Shared | schema、加密信封和测试向量待建立 | Web 编码前完成 |
+| Shared | 首个跨平台保险库夹具及真实 GitHub 恢复验证已建立 | 后续客户端复用并扩展 |
 
 Sync Hub 接入固定基线：
 
@@ -37,20 +37,20 @@ myshell/
 ├── docs/
 │   ├── PROJECT_OVERVIEW.md           # 产品、架构、安全和开发顺序
 │   ├── SYNC_HUB_DEVELOPMENT_HANDOFF.md
-│   └── SYNC_HUB_DECISIONS.md         # 编码前创建的决策记录
+│   ├── DEVELOPMENT.md                 # Web/中转实现和验收顺序
+│   └── API.md                         # 当前 Web 服务 API
+├── cmd/server/                        # Go 服务和维护命令入口
+├── internal/                          # 认证、PTY、保险库、状态与备份
 ├── shared/
 │   ├── README.md                     # 跨端共享边界
 │   ├── COMPATIBILITY.md              # 跨端兼容与验收矩阵
-│   ├── schemas/                      # 版本化 JSON schema（未来）
-│   ├── crypto/                       # 加密信封规范（未来）
-│   └── test-vectors/                 # 跨语言测试向量（未来）
+│   └── fixtures/                     # 三端共用同步与恢复夹具
 ├── web/
 │   ├── README.md
 │   ├── DEVELOPMENT.md                # Web 技术栈、节点和指标
 │   ├── docs/
-│   ├── cmd/                          # Go 服务入口（未来）
-│   ├── internal/                     # Web 后端模块（未来）
-│   └── frontend/                     # 原生 HTML/CSS/JS（未来）
+│   ├── src/                           # 原生 HTML/CSS/JavaScript
+│   └── build.mjs                      # 固定依赖和静态资源构建
 ├── macos/
 │   ├── README.md
 │   ├── DEVELOPMENT.md                # macOS 技术栈、节点和指标
@@ -206,9 +206,9 @@ README.md、DEVELOPMENT.md 和 docs。
 
 ## 依赖管理
 
-根仓库不建立跨端统一依赖清单。每个客户端在自己的目录管理依赖：
+根仓库不建立跨端统一依赖清单。每个客户端独立管理依赖：
 
-- Web：`web/go.mod` 及前端静态资源清单
+- Web：根目录 `go.mod` 及 `web/package-lock.json`
 - macOS：Xcode/Swift Package 配置
 - Windows：解决方案与 NuGet 配置
 
@@ -228,8 +228,16 @@ README.md、DEVELOPMENT.md 和 docs。
 - [Web 主题规范](web/docs/THEMES.md)
 - [Web 代码高亮](web/docs/CODE_HIGHLIGHTING.md)
 
-## 当前没有统一构建命令
+## 当前 Web 构建与验证
 
-仓库目前仍处于设计和建项阶段，因此根目录暂不提供虚假的 `make build` 或
-`make test`。各端建立工程后，必须在自己的 README 中记录真实的构建、测试、
-运行和发布命令。未来可以增加只负责调度、不隐藏失败的根级验证脚本。
+```bash
+cd web && npm ci && npm run build
+cd .. && go test ./...
+go vet ./...
+go build ./cmd/server
+docker build -t myshell:dev .
+```
+
+详细测试、安全、部署和资源基线分别见 `docs/TESTING.md`、
+`docs/SECURITY.md`、`docs/DEPLOYMENT.md` 和 `docs/PERFORMANCE.md`。macOS 与
+Windows 建立工程后，仍必须在各自目录记录独立命令。

@@ -1,0 +1,12 @@
+.git
+.gitignore
+data
+secrets/*
+web/node_modules
+web/dist
+myshell-server
+*.log
+*.tar.gz
+.DS_Store
+.idea
+.vscode

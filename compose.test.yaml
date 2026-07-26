@@ -1,0 +1,9 @@
+services:
+  myshell:
+    environment:
+      MYSHELL_SECURE_COOKIES: "false"
+      MYSHELL_TEST_BOOTSTRAP: "1"
+      MYSHELL_TEST_USERNAME: "111111"
+      MYSHELL_TEST_PASSWORD: "111111"
+    ports:
+      - "127.0.0.1:18080:8080"

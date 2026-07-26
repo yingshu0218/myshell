@@ -1,0 +1,10 @@
+services:
+  myshell:
+    environment:
+      MYSHELL_GIT_TOKEN_FILE: "/run/secrets/git_token"
+    secrets:
+      - git_token
+
+secrets:
+  git_token:
+    file: ./secrets/git_token
