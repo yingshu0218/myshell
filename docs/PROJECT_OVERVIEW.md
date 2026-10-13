@@ -1,5 +1,8 @@
 # MyShell 项目整体说明
 
+当前开发范围以 [CURRENT_SCOPE.md](CURRENT_SCOPE.md) 为准。本文保留最初的
+跨平台愿景；当前只推进 macOS，Web/Windows 与 Sync Hub 后续工作暂缓。
+
 ## 1. 文档目的与优先级
 
 本文档是 MyShell 的产品范围、总体架构和开发顺序说明。未来 Codex 开始工作前，

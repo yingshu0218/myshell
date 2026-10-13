@@ -1,0 +1,14 @@
+{
+  "description": "Public deterministic interoperability vector; never use this key in production.",
+  "appId": "myshell-test",
+  "collection": "connections",
+  "recordId": "123e4567-e89b-12d3-a456-426614174000",
+  "schemaId": "connection-v1",
+  "keyHex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+  "nonceHex": "a0a1a2a3a4a5a6a7a8a9aaab",
+  "aadHex": "6d797368656c6c2d656e76656c6f70652d7631000000000c6d797368656c6c2d746573740000000b636f6e6e656374696f6e730000002431323365343536372d653839622d313264332d613435362d3432363631343137343030300000000d636f6e6e656374696f6e2d7631",
+  "plaintextUtf8": "{\"schemaVersion\":1,\"id\":\"123e4567-e89b-12d3-a456-426614174000\",\"name\":\"Example\",\"host\":\"example.test\",\"port\":22,\"user\":\"alice\",\"proxyJump\":null,\"groupName\":\"Demo\",\"tags\":[\"demo\"],\"notes\":\"Public test vector\",\"terminalProfileId\":null,\"createdAt\":\"2026-01-02T03:04:05Z\",\"updatedAt\":\"2026-01-02T03:04:05Z\"}",
+  "envelopeUtf8": "{\"version\":1,\"algorithm\":\"A256GCM\",\"nonce\":\"oKGio6Slpqeoqaqr\",\"ciphertext\":\"nToPTi2ub940APWgbhWu_EqddTL702BWvj8UtRqfQDflWyLHlkB-DG34N-VoTrbPai90flThLk92ajtulFKpktrd6AoSn8aljIOSaOOr7pbvY8TXseOjWIsNX_fB9ii6--FY3yGCrevxqXJyv7rfBAYlEsusF6EeTqO3x9F33m-1Y98Hqgj1ekd7xOVnJv36qr7fBMugtO2QqJ_PjYNRRqk6M5PCCydloDBwAAu3245Ve9G6bAnaW_GgTBsM9307XVVsvQWiz82FOCO7JlYQmXCdgZpSCrbZgZEqijuvtgIhNRAb1xi1U-yeIS0najQab_y2HbNwQrdZm4BaVB4YoEMP-r3f-JjQU_l1qUVOHLdZZW80-s7hENpVJujUnbQctnh09hAxR_3RV34ZqY37\",\"tag\":\"jnqbxNcbW1iygmRZc4VYfQ\"}",
+  "checksum": "sha256:76211f60eb1abac56b14957a1081964c1d560372e628ef33c04f0a7e357a74ee",
+  "recoveryKey": "myshell-v1-AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8-679e771e"
+}

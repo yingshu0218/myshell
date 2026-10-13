@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "d38f6f3f-7d3d-4eb1-a327-a477912b4041",
+  "name": "Service checks",
+  "commands": [
+    {
+      "id": "18c5c055-c42f-457d-b6d9-3370f5ee6638",
+      "name": "Working directory",
+      "text": "pwd"
+    },
+    {
+      "id": "81556bd0-6f62-4d71-8449-3475943da6f5",
+      "name": "Git status",
+      "text": "git status --short"
+    }
+  ],
+  "createdAt": "2026-07-28T00:00:00Z",
+  "updatedAt": "2026-07-28T00:00:00Z"
+}

@@ -1,0 +1,14 @@
+{
+  "collection": "connections",
+  "recordId": "123e4567-e89b-12d3-a456-426614174000",
+  "steps": [
+    { "operation": "put", "baseVersion": 0, "idempotencyKey": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa", "expectVersion": 1 },
+    { "operation": "put", "baseVersion": 1, "idempotencyKey": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb", "expectVersion": 2 },
+    { "operation": "delete", "baseVersion": 2, "idempotencyKey": "cccccccc-cccc-4ccc-8ccc-cccccccccccc", "expectVersion": 3, "expectTombstone": true }
+  ],
+  "requirements": [
+    "A timed-out operation is retried with the same body and idempotency key.",
+    "A page cursor is committed only after every change is authenticated and transactionally applied.",
+    "A tombstone version prevents an older queued update from reviving the record."
+  ]
+}

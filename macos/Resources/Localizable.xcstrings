@@ -1,0 +1,270 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Add Command" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "添加指令" } } }
+    },
+    "Add to Terminal" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "添加到终端" } } }
+    },
+    "Advanced" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "高级" } } }
+    },
+    "Check Connection" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "检测连接" } } }
+    },
+    "Check saved targets every minute" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "每分钟检测已保存的目标" } } }
+    },
+    "Choose a destination from the sidebar." : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "请从侧边栏选择一项。" } } }
+    },
+    "Close Terminal" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "关闭终端" } } }
+    },
+    "Configure MyShell preferences." : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "配置 MyShell 偏好设置。" } } }
+    },
+    "Connect" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "连接" } } }
+    },
+    "Connection Manager" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "连接管理" } } }
+    },
+    "Connections" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "连接" } } }
+    },
+    "Create a group to save reusable commands." : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "创建指令组以保存可重复使用的指令。" } } }
+    },
+    "Delete" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "删除" } } }
+    },
+    "Delete Connection" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "删除连接" } } }
+    },
+    "English" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "English" } } }
+    },
+    "Export Connections…" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "导出连接…" } } }
+    },
+    "Follow System" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "跟随系统" } } }
+    },
+    "Follow system appearance" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "跟随系统外观" } } }
+    },
+    "Font size" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "字体大小" } } }
+    },
+    "General" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "通用" } } }
+    },
+    "Group" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "分组" } } }
+    },
+    "Hide Connection List" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "隐藏连接列表" } } }
+    },
+    "Identity file (optional)" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "身份文件（可选）" } } }
+    },
+    "Import Connections…" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "导入连接…" } } }
+    },
+    "Language" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "语言" } } }
+    },
+    "Local Shell" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "本地终端" } } }
+    },
+    "More Actions" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "更多操作" } } }
+    },
+    "Name" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "名称" } } }
+    },
+    "New Connection" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "新建连接" } } }
+    },
+    "New Group" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "新建指令组" } } }
+    },
+    "New Local Terminal" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "新建本地终端" } } }
+    },
+    "New Terminal" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "新建终端" } } }
+    },
+    "Next Terminal" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "下一个终端" } } }
+    },
+    "No Command Group" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "没有指令组" } } }
+    },
+    "No Connection Selected" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "未选择连接" } } }
+    },
+    "No Terminal" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "没有终端" } } }
+    },
+    "Notes" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "备注" } } }
+    },
+    "Open a new local terminal to begin." : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "打开新的本地终端以开始。" } } }
+    },
+    "Port" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "端口" } } }
+    },
+    "Previous Terminal" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "上一个终端" } } }
+    },
+    "ProxyJump (optional)" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "跳板机（可选）" } } }
+    },
+    "Quick Commands" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "快捷指令" } } }
+    },
+    "Restart" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "重新启动" } } }
+    },
+    "Run Group" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "运行指令组" } } }
+    },
+    "Save" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "保存" } } }
+    },
+    "Search connections" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "搜索连接" } } }
+    },
+    "Select a saved connection from the list or create a new one." : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "从列表中选择已保存的连接，或新建一个连接。" } } }
+    },
+    "Settings" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "设置" } } }
+    },
+    "Shell" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "终端" } } }
+    },
+    "Show Connection List" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "显示连接列表" } } }
+    },
+    "Simplified Chinese" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "简体中文" } } }
+    },
+    "SSH Destination" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "SSH 目标" } } }
+    },
+    "Sync" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "同步" } } }
+    },
+    "Tags (comma separated)" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "标签（用逗号分隔）" } } }
+    },
+    "Terminal" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "终端" } } }
+    },
+    "Theme" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "主题" } } }
+    },
+    "Application ID" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "应用 ID" } } }
+    },
+    "Bearer token" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "Bearer Token" } } }
+    },
+    "Command name" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "指令名称" } } }
+    },
+    "Conflicts" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "冲突" } } }
+    },
+    "Create New Vault Key" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "创建新的保险库密钥" } } }
+    },
+    "Disable and Remove" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "停用并移除" } } }
+    },
+    "Disable sync on this Mac?" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "要在这台 Mac 上停用同步吗？" } } }
+    },
+    "Disable Sync and Remove Local Credentials…" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "停用同步并移除本机凭据…" } } }
+    },
+    "Encryption Key" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "加密密钥" } } }
+    },
+    "Group name" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "指令组名称" } } }
+    },
+    "High Contrast" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "高对比度" } } }
+    },
+    "Import recovery key" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "导入恢复密钥" } } }
+    },
+    "Import Recovery Key" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "导入恢复密钥" } } }
+    },
+    "Keep This Mac" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "保留这台 Mac 的版本" } } }
+    },
+    "Local Data" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "本机数据" } } }
+    },
+    "Local Terminal" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "本地终端" } } }
+    },
+    "Midnight" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "午夜" } } }
+    },
+    "Paper" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "纸张" } } }
+    },
+    "Reveal Recovery Key" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "显示恢复密钥" } } }
+    },
+    "Save Token" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "保存 Token" } } }
+    },
+    "Server URL" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "服务器 URL" } } }
+    },
+    "Solarized Dark" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "Solarized 深色" } } }
+    },
+    "SSH Terminal" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "SSH 终端" } } }
+    },
+    "Status" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "状态" } } }
+    },
+    "Sync Hub" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "同步中心" } } }
+    },
+    "Sync Now" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "立即同步" } } }
+    },
+    "System" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "系统" } } }
+    },
+    "Target" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "目标终端" } } }
+    },
+    "Test Connection" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "测试连接" } } }
+    },
+    "Token stored in local Keychain" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "Token 已保存在本机钥匙串" } } }
+    },
+    "Use Remote" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "使用远端版本" } } }
+    },
+    "User (optional)" : {
+      "localizations" : { "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "用户（可选）" } } }
+    }
+  },
+  "version" : "1.0"
+}

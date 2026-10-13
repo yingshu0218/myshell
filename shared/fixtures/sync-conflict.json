@@ -1,0 +1,9 @@
+{
+  "collection": "connections",
+  "recordId": "123e4567-e89b-12d3-a456-426614174000",
+  "serverVersion": 4,
+  "staleBaseVersion": 3,
+  "expectedStatus": 409,
+  "policy": "No automatic last-write-wins. Preserve both authenticated candidates locally and require the user to choose; the chosen logical write receives a new idempotency key and uses baseVersion 4.",
+  "secretPolicy": "Passwords and key material are outside every shared payload and therefore cannot be merged or displayed by conflict UI."
+}

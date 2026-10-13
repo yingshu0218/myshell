@@ -14,7 +14,8 @@ shared/
 ├── schemas/
 │   ├── connection-v1.schema.json
 │   ├── group-v1.schema.json
-│   └── terminal-profile-v1.schema.json
+│   ├── terminal-profile-v1.schema.json
+│   └── command-group-v1.schema.json
 ├── crypto/
 │   └── envelope-v1.md
 ├── test-vectors/
@@ -23,7 +24,8 @@ shared/
 │   └── corrupted-ciphertext-v1.json
 └── fixtures/
     ├── sync-create-update-delete.json
-    └── sync-conflict.json
+    ├── sync-conflict.json
+    └── command-group-v1.json
 ```
 
 这些文件由项目决策产生，不得由某个端实现时临时决定。
@@ -31,11 +33,15 @@ shared/
 ## 3. 数据模型原则
 
 - 所有业务记录使用客户端生成、跨重启稳定的 UUID。
-- Collection 首版固定为 `connections`、`groups`、`terminal-profiles`。
+- Collection 首版固定为 `connections`、`groups`、`terminal-profiles`、
+  `command-groups`。
 - 时间统一使用 UTC RFC 3339，但冲突不能只依赖客户端时间。
 - 未知字段的保留/拒绝策略必须由 schema 版本明确。
 - 删除使用 Sync Hub tombstone，不以“本地不存在”等价替代。
-- 密码冲突不得静默 last-write-wins；必须要求用户选择或执行已批准的安全合并。
+- v1 不同步密码、私钥或私钥路径；业务记录冲突不得静默
+  last-write-wins，必须要求用户选择。
+- `command-groups` 只同步用户明确保存的非秘密快捷指令及顺序，不得自动收集
+  终端输入或历史。快捷指令不得包含密码、Token、私钥、恢复密钥或其他凭据。
 
 ## 4. 加密信封原则
 
@@ -70,7 +76,7 @@ shared/
 | --- | --- | --- | --- |
 | 创建连接并被其他端下载 | 必须 | 必须 | 必须 |
 | 修改非秘密字段 | 必须 | 必须 | 必须 |
-| 修改 SSH 密码 | 必须 | 必须 | 必须 |
+| 验证密码和密钥材料从未进入 payload | 必须 | 必须 | 必须 |
 | 删除与 tombstone | 必须 | 必须 | 必须 |
 | 同时修改产生 `409` | 必须 | 必须 | 必须 |
 | 超时后复用幂等键 | 必须 | 必须 | 必须 |
@@ -79,6 +85,7 @@ shared/
 | 新设备恢复密钥导入 | 必须 | 必须 | 必须 |
 | 未知 schema 安全拒绝 | 必须 | 必须 | 必须 |
 | 密文损坏安全失败 | 必须 | 必须 | 必须 |
+| 快捷指令组的顺序、重命名、删除和冲突 | 必须 | 必须 | 必须 |
 
 未开发的端可以先使用契约测试工具替代，但最终发布前必须用真实客户端完成。
 

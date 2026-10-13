@@ -13,6 +13,10 @@ data/
 *.trace
 *.profdata
 *.xcresult
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.db
 
 # Go / Web
 web/bin/

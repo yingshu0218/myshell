@@ -1,12 +1,17 @@
 # MyShell macOS 开发规范
 
+当前首版范围以 [CURRENT_SCOPE.md](../docs/CURRENT_SCOPE.md) 为准：仅推进
+macOS，Sync Hub 暂缓，不要求跨端互操作与 8/24 小时长测作为当前发布门槛。
+下列节点保留完整历史规划，尚未执行的验收不得标记为通过。
+
 ## 1. 交付目标
 
 `macos/` 交付真正的原生 macOS 终端客户端。它在本机运行 Zsh，通过系统
 OpenSSH 连接远程服务器，并与 MyShell Web、Windows 使用相同的加密数据和
 Sync Hub 契约。
 
-Web 端和 `shared/` 契约验收前，不建立正式 macOS 工程。
+macOS 当前可独立推进平台建项、工程骨架、PTY 和原生 UI。涉及持久化的跨端业务
+格式与真实 Sync Hub 写入，必须等待 `shared/` 契约和固定测试向量验收。
 
 ## 2. 固定技术栈
 
@@ -19,13 +24,14 @@ Web 端和 `shared/` 契约验收前，不建立正式 macOS 工程。
 | SSH | `/usr/bin/ssh`、`~/.ssh/config`、known_hosts、SSH Agent |
 | 网络 | `URLSession` async/await |
 | 加密 | CryptoKit AES-GCM，遵循 `shared/` 信封 |
-| 密钥/Token | macOS Keychain |
-| 持久化 | 系统 SQLite 封装或经决策批准的 Apple 原生存储 |
+| 密钥/Token | 本机 macOS Keychain，显式禁止 iCloud 同步 |
+| 持久化 | 系统 SQLite 薄封装 |
 | 日志 | `Logger`/OSLog，隐私字段强制脱敏 |
 | 测试 | XCTest 或稳定 Xcode 随附测试框架 |
 
-初始部署目标建议 macOS 14；Bundle Identifier、Intel 支持和最终最低版本必须
-在 M1 建项前由所有者确认。
+部署目标固定为 macOS 14，仅构建 Apple Silicon `arm64`。Bundle Identifier
+暂定为 `com.yingshu0218.myshell`。首版个人自用，通过本地构建、GitHub Releases
+或 Homebrew 分发未签名 arm64 ZIP；Developer ID 和 Apple 公证属于未来规划。
 
 任何终端渲染、PTY、SQLite 封装或其他第三方包都需单独批准。未经批准不得把
 Web 终端嵌入 WebView 代替原生终端。
@@ -59,11 +65,13 @@ UI 不直接操作 SQLite、Keychain、PTY 或网络。各能力通过协议隔�
 
 ### M0：平台与公共契约
 
-- 确认 macOS 最低版本、Bundle ID、架构和分发方式
+- 记录已经确认的 macOS 最低版本、Bundle ID、架构、存储和分发方式
+- 在 `macos/docs/` 维护未来选项和公共契约提案，不直接修改其他客户端或 `shared/`
 - 读取 `shared/` schema、加密信封和测试向量
 - 验证 CryptoKit 与共享向量完全互操作
 
-验收：固定向量的加密、解密、AAD 错误、密文损坏和未知版本测试通过。
+验收：平台决策有记录；公共维护者提供固定向量后，加密、解密、AAD 错误、密文
+损坏和未知版本测试通过。固定向量未就绪时，M0 保持部分完成。
 
 ### M1：原生工程骨架
 
@@ -105,7 +113,7 @@ UI 不直接操作 SQLite、Keychain、PTY 或网络。各能力通过协议隔�
 
 - 连接、分组、标签、备注和终端配置
 - 事务性本地记录、稳定 UUID 和 tombstone
-- Keychain 中的 Token 与保险库密钥
+- 本机非同步 Keychain 中相互独立的 Token 与保险库密钥
 - 搜索、最近连接和安全错误 UI
 
 验收：跨重启稳定；数据库不含明文密码；Keychain 锁定和条目缺失可恢复。
@@ -125,12 +133,13 @@ UI 不直接操作 SQLite、Keychain、PTY 或网络。各能力通过协议隔�
 - 同步状态、最近成功时间和可行动错误
 - 应用重启、Mac 休眠、唤醒和网络切换
 - 导入/导出、停用同步和安全清理
+- 非秘密快捷指令组、本地/SSH 终端插入、有界批量执行与加密同步
 
 ### M8：性能与发布
 
 - 冷启动、空闲、单会话、每新增会话和高吞吐测量
 - 8 小时空闲、24 小时会话和崩溃恢复
-- 签名、归档、安装、升级和回滚
+- 未签名个人 ZIP、SHA-256、GitHub/Homebrew 获取、安装、升级和回滚
 
 ## 5. 设计指标
 
@@ -156,8 +165,25 @@ UI 不直接操作 SQLite、Keychain、PTY 或网络。各能力通过协议隔�
 - Web ↔ macOS 双设备同步、冲突、删除和恢复通过
 - Keychain、日志、数据库和崩溃报告无秘密泄露
 - 长时间会话无进程、描述符或明显内存泄漏
-- 签名应用能在干净 Mac 安装、升级和回滚
+- 个人 Release ZIP 能在干净 Mac 安装、升级和回滚
 - 指标达标或偏差得到所有者批准
+
+## 6.1 当前验收记录
+
+- M1–M3：Debug/Release 构建、PTY、Zsh、SwiftTerm、多标签和多窗口已验证
+- M4：系统 SSH 参数安全、config/Agent/known_hosts/ProxyJump 接入和退出恢复
+  已实现；密码、密钥、指纹变化、超时及断网仍需测试 SSH 主机做矩阵验证
+- M5：SQLite v6、稳定 UUID、tombstone、连接/快捷指令 UI 和非同步 Keychain 已实现
+- M6：共享 v1 schema、CryptoKit、恢复密钥、真实连接 pull/push、持久队列和
+  409 冲突用户选择已实现；实际 Sync Hub 双设备互操作已经在本机通过
+- M7：同步凭据诊断、停用清理和无秘密连接导入导出已实现；休眠/网络切换的长时
+  验证仍待执行
+- M8：arm64 未签名个人 ZIP 与 SHA-256 已验证；干净机安装和性能长测仍需验收，
+  Developer ID 与公证不属于首版完成条件
+
+最新自动化证据：46 项默认测试全部通过，另有 1 项按需真实 Sync Hub 集成测试
+通过；Release 应用的 Bundle ID 为
+`com.yingshu0218.myshell`，最低系统 14.0，版本 0.1.0 (1)，主程序仅包含 arm64。
 
 ## 7. Codex 接手指令
 

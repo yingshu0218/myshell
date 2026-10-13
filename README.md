@@ -13,13 +13,18 @@ GitHub/Gitea 只作为 Sync Hub 的可选加密备份目标，不参与日常实
 
 ## 当前状态
 
+当前开发范围仅为 macOS 个人客户端；Web、Windows 和 Sync Hub 后续开发暂缓。
+8/24 小时长时间稳定性测试不属于当前首版验收要求。已实现的同步代码和公共
+契约保留，现阶段以本地终端、SSH、交互体验与短时资源回收验证为重点。
+范围与文件交付说明见 [当前开发范围](docs/CURRENT_SCOPE.md)。
+
 | 模块 | 状态 | 当前重点 |
 | --- | --- | --- |
 | Sync Hub | `v0.1.0` 接入基线已完成 | 固定 API 与安全契约 |
-| MyShell Web | 视觉与功能规范已完成，代码尚未开始 | 当前优先开发 |
-| macOS | 需求已确定，代码尚未开始 | Web 验收后开发 |
+| MyShell Web | 仅有历史设计，尚未建项 | 暂缓 |
+| macOS | 原生终端、SSH、SQLite、连接与快捷指令加密同步、冲突选择已实现 | 当前唯一开发重点 |
 | Windows | 需求已确定，技术基线待最终确认 | macOS 稳定后开发 |
-| Shared | schema、加密信封和测试向量待建立 | Web 编码前完成 |
+| Shared | v1 schema、加密信封、恢复格式和测试向量已建立 | 三端契约测试与兼容演进 |
 
 Sync Hub 接入固定基线：
 
@@ -41,9 +46,9 @@ myshell/
 ├── shared/
 │   ├── README.md                     # 跨端共享边界
 │   ├── COMPATIBILITY.md              # 跨端兼容与验收矩阵
-│   ├── schemas/                      # 版本化 JSON schema（未来）
-│   ├── crypto/                       # 加密信封规范（未来）
-│   └── test-vectors/                 # 跨语言测试向量（未来）
+│   ├── schemas/                      # 版本化 JSON schema
+│   ├── crypto/                       # 加密信封与恢复格式
+│   └── test-vectors/                 # 跨语言固定测试向量
 ├── web/
 │   ├── README.md
 │   ├── DEVELOPMENT.md                # Web 技术栈、节点和指标
@@ -54,9 +59,9 @@ myshell/
 ├── macos/
 │   ├── README.md
 │   ├── DEVELOPMENT.md                # macOS 技术栈、节点和指标
-│   ├── MyShell.xcodeproj/            # 未来
-│   ├── Sources/                      # 未来
-│   └── Tests/                        # 未来
+│   ├── MyShell.xcodeproj/            # Xcode 原生工程
+│   ├── Sources/                      # SwiftUI、PTY 与 SwiftTerm 适配
+│   └── Tests/                        # XCTest
 └── windows/
     ├── README.md
     ├── DEVELOPMENT.md                # Windows 技术栈、节点和指标
@@ -84,6 +89,7 @@ myshell/
 - 离线待上传队列、幂等重试、冲突和删除处理
 - Sync Hub 与 SSH 目标手动/定时状态检查
 - 多套主题和非敏感终端设置同步
+- 用户主动保存的非秘密快捷指令组及顺序
 - 明确的连接、同步和错误状态
 
 ### Web
@@ -100,8 +106,11 @@ myshell/
 
 - Swift + SwiftUI/AppKit
 - 本机 Zsh、系统 OpenSSH 和 `~/.ssh/config`
-- 多窗口、多标签和 macOS Keychain
-- Apple Silicon 与 Intel 支持范围在建项时确认
+- 多窗口、多标签和仅本机使用的 macOS Keychain
+- 最低 macOS 14，仅支持 Apple Silicon
+- 系统 SQLite 本地持久化
+- 首版个人自用，通过本地构建、GitHub Releases 或 Homebrew 分发
+- Developer ID 签名与公证留作未来规划
 
 ### Windows
 
@@ -119,13 +128,12 @@ myshell/
 
 - 主机、端口、显示名称
 - SSH 用户名
-- 经过 MyShell 客户端加密并认证的 SSH 密码
-- 分组、标签、备注
-- 非敏感终端配置和显示设置
+- 分组、标签、备注和非敏感终端配置
 
 禁止同步：
 
 - 任何明文密码或连接凭据
+- 首版不持久化或同步 SSH 密码，由 SSH TTY 交互输入
 - SSH 私钥和私钥口令
 - 终端输入、输出、滚屏和命令历史
 - Sync Hub Token
@@ -146,12 +154,10 @@ myshell/
 ## 开发顺序
 
 1. 完成公共 schema、加密信封、测试向量和决策文档。
-2. 开发并验收 `web/`。
-3. 开发并验收 `macos/`。
-4. 开发并验收 `windows/`。
-5. 完成三端互操作、恢复、冲突和兼容测试。
+2. `web/`、`macos/` 和 `windows/` 在各自目录独立开发和验收。
+3. 完成三端互操作、恢复、冲突和兼容测试。
 
-每个端都要独立通过构建、自动化测试、安全检查、长时间会话和资源测量，不能
+每个端都要独立通过构建、自动化测试、安全检查和适用的资源测量，不能
 因为其他端可用而跳过本端验收。
 
 ## Agent 接手与调用规范
@@ -230,6 +236,6 @@ README.md、DEVELOPMENT.md 和 docs。
 
 ## 当前没有统一构建命令
 
-仓库目前仍处于设计和建项阶段，因此根目录暂不提供虚假的 `make build` 或
+macOS 已有独立工程；根目录不提供统一的 `make build` 或
 `make test`。各端建立工程后，必须在自己的 README 中记录真实的构建、测试、
 运行和发布命令。未来可以增加只负责调度、不隐藏失败的根级验证脚本。

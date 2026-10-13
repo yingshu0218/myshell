@@ -1,0 +1,10 @@
+{
+  "baseVector": "envelope-v1.json",
+  "mutations": [
+    { "field": "nonce", "value": "oaGio6Slpqeoqaqr", "expected": "authentication-failed" },
+    { "field": "ciphertext", "operation": "flip-first-decoded-bit", "expected": "authentication-failed" },
+    { "field": "tag", "value": "iSkTUIUmNaHPsGTMy4U0xA", "expected": "authentication-failed" },
+    { "field": "checksum", "value": "sha256:0000000000000000000000000000000000000000000000000000000000000000", "expected": "checksum-mismatch" },
+    { "field": "version", "value": 2, "expected": "unsupported-envelope" }
+  ]
+}

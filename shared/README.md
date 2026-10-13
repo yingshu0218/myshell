@@ -4,15 +4,15 @@
 
 详细互操作矩阵见 [COMPATIBILITY.md](COMPATIBILITY.md)。
 
-计划内容：
+当前正式的首版内容：
 
 ```text
 shared/
 ├── README.md
-├── schemas/          # 连接、分组、终端配置的版本化 JSON schema
-├── crypto/           # 加密信封、AAD、nonce 和恢复密钥格式
-├── test-vectors/     # 三种语言必须得到相同结果的固定向量
-└── fixtures/         # Sync Hub 协议和冲突行为样例
+├── schemas/          # connection/group/terminal-profile/command-group v1 JSON Schema
+├── crypto/           # envelope-v1、AAD、checksum 和恢复密钥格式
+├── test-vectors/     # AES-GCM 正常与失败固定向量
+└── fixtures/         # 创建、更新、删除和冲突样例
 ```
 
 ## 允许进入 shared 的内容
@@ -36,10 +36,13 @@ shared/
 
 任何公共格式变化必须：
 
-1. 先记录在 `docs/SYNC_HUB_DECISIONS.md`。
+1. 先在变更 PR 中记录决策、威胁模型和兼容性影响。
 2. 分配新 schema 或信封版本。
 3. 保留旧版本读取、迁移或安全拒绝策略。
 4. 更新所有受影响端的固定测试向量。
 5. 获得仓库所有者确认后再实现。
 
-当前目录尚未建立正式 schema。客户端不得各自发明不兼容格式。
+首版契约已经建立。客户端必须严格读取 v1；写入新版本前必须先更新这里的规范、
+schema、向量和兼容性矩阵。`command-groups` 保存用户明确创建的非秘密快捷指令，
+不等同于终端历史；客户端不得自动采集终端输入。v1 明确不同步密码、私钥、
+私钥路径、Token、恢复密钥、终端输出、滚屏或自动采集的命令历史。

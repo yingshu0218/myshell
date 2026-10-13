@@ -1,0 +1,9 @@
+{
+  "baseVector": "envelope-v1.json",
+  "mutations": [
+    { "field": "appId", "value": "other-app", "expected": "authentication-failed" },
+    { "field": "collection", "value": "groups", "expected": "authentication-failed" },
+    { "field": "recordId", "value": "123e4567-e89b-12d3-a456-426614174001", "expected": "authentication-failed" },
+    { "field": "schemaId", "value": "connection-v2", "expected": "authentication-failed" }
+  ]
+}
