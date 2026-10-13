@@ -37,11 +37,11 @@ M0 文档：
 
 - [已确认决策](docs/DECISIONS.md)
 - [未来可选能力](docs/FUTURE_OPTIONS.md)
-- [公共契约提案](docs/SHARED_CONTRACT_PROPOSAL.md)
+- [正式公共契约](../shared/README.md)
 - [终端渲染依赖评估](docs/TERMINAL_DEPENDENCY_EVALUATION.md)
 - [性能验证](docs/PERFORMANCE.md)
 - [发布说明](docs/RELEASE.md)
-- [首版验收审计](docs/FIRST_RELEASE_AUDIT.md)
+- [当前范围与验证状态](../docs/CURRENT_SCOPE.md)
 
 暂定 Bundle Identifier 为 `com.yingshu0218.myshell`。当前唯一获批的运行时
 第三方包是 SwiftTerm 1.15.0；许可信息见 [第三方声明](THIRD_PARTY_NOTICES.md)。
